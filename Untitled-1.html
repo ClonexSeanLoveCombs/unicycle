@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clone License Key</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #3a0ca3, #1c1c1c);
+      color: #f0e6ff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1, h2 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+    button {
+      background: linear-gradient(135deg, #7209b7, #560bad);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #9d4edd, #7209b7);
+      transform: scale(1.05);
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      border: 2px solid #7209b7;
+      border-radius: 10px;
+      color: #1c1c1c;
+      background-color: #f0e6ff;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    input:focus {
+      border-color: #9d4edd;
+    }
+    .hidden {
+      display: none;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+    }
+    .key-icon, .decorative-icon {
+      position: fixed;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .decorative-icon {
+      top: 20px;
+      left: 20px;
+    }
+    .key-icon {
+      top: 20px;
+      right: 20px;
+    }
+    .key-icon img, .decorative-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .key-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+    }
+    .tooltip {
+      position: absolute;
+      top: 50%;
+      right: 120%;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 14px;
+      display: none;
+      transform: translateY(-50%);
+    }
+    .key-icon:hover .tooltip {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Clone License Key</h1>
+    <p>Are You Using TEMP Key or PERM Key?</p>
+    <button id="tempKey">TEMP Key</button>
+    <button id="permKey">PERM Key</button>
+
+    <div id="tempInput" class="hidden">
+      <h2>Enter Your TEMP License Key</h2>
+      <input type="text" id="tempLicense" placeholder="Enter TEMP Key">
+      <button onclick="checkKey('temp')">Submit</button>
+    </div>
+
+    <div id="permInput" class="hidden">
+      <h2>Enter Your PERM License Key</h2>
+      <input type="text" id="permLicense" placeholder="Enter PERM Key">
+      <button onclick="checkKey('perm')">Submit</button>
+    </div>
+
+    <div id="result" class="hidden">
+      <h2>Ready to Claim Your Item?</h2>
+      <button id="claimItem">Yes</button>
+    </div>
+  </div>
+
+  <!-- Decorative Icon -->
+  <div class="decorative-icon">
+    <img src="https://i.pinimg.com/474x/84/af/7a/84af7a09cb8bf3b9c9226f0ce0928315.jpg" alt="Decorative Icon">
+  </div>
+
+  <!-- Key Icon -->
+  <div class="key-icon" onclick="redirectToSupport()" title="Click for help">
+    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Key Icon">
+    <div class="tooltip">Having Trouble With Your Key?</div>
+  </div>
+
+  <script>
+    const tempKeys = [
+      "Clone-4364-28452", "Clone-2321-86432", "Clone-3785-42345",
+      "Clone-3275-47473", "Clone-4764-01931", "Clone-4755-93051",
+      "Clone-3742-47434", "Clone-3553-99989", "Clone-2432-87557",
+      "Clone-4464-23952"
+    ];
+    
+    const permKeys = [
+      "Clone-xrt4563-GAL5584PODDsawX", "Clone-rtsjfds7-GAL4397TfxzASkfdyu",
+      "Clone-fxsjfds7-GAL45555557843fsdfx", "Clone-r48dds7-GAL3fjdXXSxzASkfdyu",
+      "Clone-r45dds7-GAL3fjd43gxzASkfdyu", "Clone-r12ddds7-GAL287gf678ghhdASkf",
+      "Clone-r4184ds7-GAL3fjdXXSshsA;89dyu", "Clone-r48d148s7-GAL3fjddgSxzA17fdxdyu",
+      "Clone-437gfd-GALXh54y8fsdjXu8efu4755", "Clone-475387-GAL457gfdjhun5475gfg545"
+    ];
+
+    document.getElementById("tempKey").onclick = () => {
+      document.getElementById("tempInput").classList.remove("hidden");
+      document.getElementById("permInput").classList.add("hidden");
+    };
+
+    document.getElementById("permKey").onclick = () => {
+      document.getElementById("permInput").classList.remove("hidden");
+      document.getElementById("tempInput").classList.add("hidden");
+    };
+
+    function checkKey(type) {
+      const input = type === 'temp' ? document.getElementById("tempLicense").value : document.getElementById("permLicense").value;
+      const validKeys = type === 'temp' ? tempKeys : permKeys;
+      const discordLink = type === 'temp' 
+        ? "https://discord.gg/qfz2DJhTtc" 
+        : "https://discord.gg/6uHFb4KDtg";
+
+      if (validKeys.includes(input)) {
+        document.getElementById("result").classList.remove("hidden");
+        document.getElementById("claimItem").onclick = () => window.location.href = discordLink;
+      } else {
+        alert("Invalid Key! Please try again.");
+      }
+    }
+
+    function redirectToSupport() {
+      window.location.href = "https://discord.com/channels/1314314603777363988/1314854203377844224";
+    }
+  </script>
+</body>
+</html>
